@@ -13,16 +13,22 @@ function init() {
 
     gl.clearColor( 0.0, 1.0, 0.0, 1.0 );
     
-    cone = new Cone();
+	try{
+    cone = new Cone(DefaultNumSides, "Cone-vertex-shader", "Cone-fragment-shader");
 
     render();
+	} 
+	catch (e){
+		alert(e.message);
+	}
+	
 }
 
 function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
     cone.render();
 }
-
+/**
 function Cone() {
     this.count = 3,
     this.positions = {
@@ -49,6 +55,6 @@ function Cone() {
         gl.drawArrays(gl.TRIANGLE_STRIP, start, count);
     };
 };
-
+**/
 
 window.onload = init;
